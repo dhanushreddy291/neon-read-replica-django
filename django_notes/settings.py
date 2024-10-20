@@ -80,11 +80,20 @@ DATABASES = {
         'NAME': 'your_neon_database_name',
         'USER': 'your_username',
         'PASSWORD': 'your_password',
-        'HOST': 'your_neon_host',
+        'HOST': 'your_primary_host',
+        'PORT': '5432',
+    },
+    'replica': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_neon_database_name',
+        'USER': 'your_username',
+        'PASSWORD': 'your_password',
+        'HOST': 'your_read_replica_host',
         'PORT': '5432',
     }
 }
 
+DATABASE_ROUTERS = ['notes.db_router.PrimaryReplicaRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
